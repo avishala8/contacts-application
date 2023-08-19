@@ -40,6 +40,9 @@ body {
   color: white;
   display: flex;
 }
+.contacts:hover {
+  background-color: antiquewhite;
+}
 .details {
   color: black;
   font-style: bold;
