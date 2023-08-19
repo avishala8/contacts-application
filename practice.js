@@ -6,7 +6,8 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("assets"));
+
+app.use(function (req, res, next) {});
 
 var contactList = [
   {
@@ -36,16 +37,6 @@ app.get("/", function (req, res) {
 app.post("/create-contact", function (req, res) {
   contactList.push(req.body);
   return res.redirect("/");
-});
-app.get("/delete-contact/", function (req, res) {
-  let phone = req.query.phone;
-  let contactIndex = contactList.findIndex((contact) => contact.phone == phone);
-  console.log(contactIndex);
-  if (contactIndex != -1) {
-    contactList.splice(contactIndex, 1);
-    console.log(req.query);
-  }
-  return res.redirect("back");
 });
 
 app.listen(port, function (err) {

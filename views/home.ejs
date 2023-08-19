@@ -1,29 +1,71 @@
 <html>
   <head>
     <title><%= locals.title %></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <h1>Contact List!</h1>
-    <div>
+    <h1 id="page-heading">
+      <i class="fas fa-address-book"></i>
+      My Contacts!
+    </h1>
+    <div class="headings">
+      <p>Name</p>
+      <p>Email</p>
+      <p>Phone number</p>
+    </div>
+    <div id="contacts-list-container">
       <ul>
         <% for (let i of contact_list) { %>
-        <li>
-          <p><%= i.name %></p>
-          <p><%= i.phone %></p>
+        <li class="contacts">
+          <div class="details">
+            <p><%= i.name %></p>
+            <p><%= i.email %></p>
+            <p><%= i.phone %></p>
+          </div>
+          <div class="delete-contact">
+            <a href="/delete-contact/?phone=<%=i.phone %> ">
+              <i class="fas fa-window-close"></i>
+            </a>
+          </div>
         </li>
         <% } %>
       </ul>
     </div>
-    <form action="/create-contact" method="post">
-      <input type="text" name="name" id="" placeholder="Enter Name" required />
-      <input
-        type="number"
-        name="phone"
-        id=""
-        placeholder="Enter Phone"
-        required
-      />
-      <button type="submit">Add Contact</button>
-    </form>
+    <div class="addcon">
+      <form action="/create-contact" method="post">
+        <input
+          type="text"
+          name="name"
+          id=""
+          placeholder="Enter Name"
+          size="30"
+          style="height: 50px; font-size: 14pt; border: 4px solid"
+          required
+        />
+        <input
+          type="text"
+          name="email"
+          id=""
+          placeholder="Enter email"
+          size="30"
+          style="height: 50px; font-size: 14pt; border: 4px solid"
+        />
+        <input
+          type="number"
+          name="phone"
+          id=""
+          placeholder="Enter Phone"
+          size="50"
+          style="height: 50px; font-size: 14pt; border: 4px solid"
+          required
+        />
+        <button type="submit" id="addconbutton"><p>Add New Contact</p></button>
+      </form>
+    </div>
   </body>
+  <script type="text/javascript" src="/js/home.js"></script>
 </html>
